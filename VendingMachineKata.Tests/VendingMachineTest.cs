@@ -43,4 +43,12 @@ public class VendingMachineTest
 
         machine.Amount.Should().Be(0);
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Display_Insert_Coin_When_Not_Have_Inserted_Coins()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.Display.Should().Be("INSERT COIN");
+    }
 }
