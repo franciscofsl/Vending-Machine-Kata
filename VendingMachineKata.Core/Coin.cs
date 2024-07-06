@@ -28,6 +28,11 @@ public class Coin
             return 0.10;
         }
 
+        if (IsQuarter())
+        {
+            return 0.25;
+        }
+
         return 0;
     }
 
@@ -39,5 +44,10 @@ public class Coin
     private bool IsNickel()
     {
         return _weight is 5.0 && _size is 21.21;
+    }
+
+    private bool IsQuarter()
+    {
+        return _weight is 5.67 && _size is 24.26;
     }
 }
