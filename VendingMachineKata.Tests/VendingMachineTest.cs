@@ -23,4 +23,14 @@ public class VendingMachineTest
 
         machine.Amount.Should().Be(0.10);
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Accept_Quarters()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Coin.Create(5.67, 24.26));
+
+        machine.Amount.Should().Be(0.25);
+    }
 }
