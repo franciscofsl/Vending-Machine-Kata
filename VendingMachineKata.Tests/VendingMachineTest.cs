@@ -33,4 +33,14 @@ public class VendingMachineTest
 
         machine.Amount.Should().Be(0.25);
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Reject_Pennies()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Coin.Create(2.5, 19.05));
+
+        machine.Amount.Should().Be(0);
+    }
 }
