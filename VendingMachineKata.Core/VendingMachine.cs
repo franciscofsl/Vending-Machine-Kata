@@ -7,6 +7,7 @@ public class VendingMachine
     }
 
     public double Amount { get; private set; }
+    public string Display { get; private set; } = "INSERT COIN";
 
     public static VendingMachine Initialize()
     {
