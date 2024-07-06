@@ -1,7 +1,8 @@
 Vending Machine Kata
 ![ci](https://github.com/franciscofsl/Vending-Machine-Kata/actions/workflows/ci.yml/badge.svg)
-Source: https://sammancoaching.org/kata_descriptions/vending_machine.html
 ====================
+
+Source: https://sammancoaching.org/kata_descriptions/vending_machine.html
 
 In this exercise you will build the brains of a vending machine.  It will accept money, make change, maintain
 inventory, and dispense products.  All the things that you might expect a vending machine to accomplish.
