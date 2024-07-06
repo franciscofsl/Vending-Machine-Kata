@@ -38,12 +38,12 @@ public class Coin
 
     private bool IsDime()
     {
-        return _weight is 2.268 && _size is 17.91;
+        return _weight is 5.0 && _size is 21.21;
     }
 
     private bool IsNickel()
     {
-        return _weight is 5.0 && _size is 21.21;
+        return _weight is 2.268 && _size is 17.91;
     }
 
     private bool IsQuarter()
