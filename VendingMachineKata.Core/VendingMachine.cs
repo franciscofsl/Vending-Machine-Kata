@@ -6,10 +6,11 @@ public class VendingMachine
 {
     private VendingMachine()
     {
+        Display = Display.TurnOn("INSERT COIN");
     }
 
     public double Amount { get; private set; }
-    public string Display { get; private set; } = "INSERT COIN";
+    public Display Display { get; }
     public List<Coin> Return { get; set; } = new();
 
     public static VendingMachine Initialize()
@@ -28,6 +29,6 @@ public class VendingMachine
         }
 
         Amount += value;
-        Display = Amount.ToString("0.##", CultureInfo.InvariantCulture);
+        Display.Update(Amount.ToString("0.##", CultureInfo.InvariantCulture));
     }
 }
