@@ -13,4 +13,14 @@ public class VendingMachineTest
 
         machine.Amount.Should().Be(0.05);
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Accept_Dimes()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Coin.Dime());
+
+        machine.Amount.Should().Be(0.10);
+    }
 }
