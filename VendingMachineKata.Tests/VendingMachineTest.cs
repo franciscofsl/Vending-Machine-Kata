@@ -11,6 +11,6 @@ public class VendingMachineTest
 
         machine.InsertCoin(Coin.Nickel());
 
-        machine.Amount.Should().Be(0.5);
+        machine.Amount.Should().Be(0.05);
     }
 }

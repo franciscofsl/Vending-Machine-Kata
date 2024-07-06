@@ -15,6 +15,6 @@ public class VendingMachine
 
     public void InsertCoin(Coin coin)
     {
-        Amount += 0.5;
+        Amount += 0.05;
     }
 }
