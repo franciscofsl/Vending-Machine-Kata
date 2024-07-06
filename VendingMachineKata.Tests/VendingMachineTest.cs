@@ -9,7 +9,7 @@ public class VendingMachineTest
     {
         var machine = VendingMachine.Initialize();
 
-        machine.InsertCoin(Coin.Nickel());
+        machine.InsertCoin(Coin.Create(5.0, 21.21));
 
         machine.Amount.Should().Be(0.05);
     }
@@ -19,7 +19,7 @@ public class VendingMachineTest
     {
         var machine = VendingMachine.Initialize();
 
-        machine.InsertCoin(Coin.Dime());
+        machine.InsertCoin(Coin.Create(2.268, 17.91));
 
         machine.Amount.Should().Be(0.10);
     }
