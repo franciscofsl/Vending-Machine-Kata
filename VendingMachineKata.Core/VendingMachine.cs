@@ -26,6 +26,6 @@ public class VendingMachine
         }
 
         Amount += value;
-        Display = Amount.ToString(CultureInfo.InvariantCulture);
+        Display = Amount.ToString("0.##",CultureInfo.InvariantCulture);
     }
 }

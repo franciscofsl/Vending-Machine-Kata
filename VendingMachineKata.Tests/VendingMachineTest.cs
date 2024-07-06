@@ -76,4 +76,16 @@ public class VendingMachineTest
 
         machine.Display.Should().Be("INSERT COIN");
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Display_Sum_Of_Coins()
+    {
+        var machine = VendingMachine.Initialize();
+        
+        machine.InsertCoin(Nickel);
+        machine.InsertCoin(Penny);
+        machine.InsertCoin(Dime);
+
+        machine.Display.Should().Be("0.15");
+    }
 }
