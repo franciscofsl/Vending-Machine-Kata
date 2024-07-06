@@ -4,10 +4,10 @@ namespace VendingMachineKata.Tests;
 
 public class VendingMachineTest
 {
-    private static Coin Nickel => Coin.Create(2.268, 17.91);
-    private static Coin Dime => Coin.Create(5.0, 21.21);
-    private static Coin Quarter => Coin.Create(5.67, 24.26);
-    private static Coin Penny => Coin.Create(2.5, 19.05);
+    private static readonly Coin Nickel = Coin.Create(2.268, 17.91);
+    private static readonly Coin Dime = Coin.Create(5.0, 21.21);
+    private static readonly Coin Quarter = Coin.Create(5.67, 24.26);
+    private static readonly Coin Penny = Coin.Create(2.5, 19.05);
 
     [Fact]
     public void Vending_Machine_Should_Accept_Nickels()
@@ -81,11 +81,21 @@ public class VendingMachineTest
     public void Vending_Machine_Should_Display_Sum_Of_Coins()
     {
         var machine = VendingMachine.Initialize();
-        
+
         machine.InsertCoin(Nickel);
         machine.InsertCoin(Penny);
         machine.InsertCoin(Dime);
 
         machine.Display.Should().Be("0.15");
+    }
+
+    [Fact]
+    public void Vending_Machine_Should_Put_In_Return_Rejected_Coins()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Penny);
+
+        machine.Return.Should().Contain(Penny); 
     }
 }

@@ -10,6 +10,7 @@ public class VendingMachine
 
     public double Amount { get; private set; }
     public string Display { get; private set; } = "INSERT COIN";
+    public List<Coin> Return { get; set; } = new();
 
     public static VendingMachine Initialize()
     {
@@ -22,10 +23,11 @@ public class VendingMachine
 
         if (value is double.NaN)
         {
+            Return.Add(coin);
             return;
         }
 
         Amount += value;
-        Display = Amount.ToString("0.##",CultureInfo.InvariantCulture);
+        Display = Amount.ToString("0.##", CultureInfo.InvariantCulture);
     }
 }
