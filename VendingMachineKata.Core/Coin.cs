@@ -33,7 +33,7 @@ public class Coin
             return 0.25;
         }
 
-        return 0;
+        return double.NaN;
     }
 
     private bool IsDime()

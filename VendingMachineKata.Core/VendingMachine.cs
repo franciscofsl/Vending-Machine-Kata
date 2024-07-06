@@ -18,7 +18,14 @@ public class VendingMachine
 
     public void InsertCoin(Coin coin)
     {
-        Amount += coin.Value();
+        var value = coin.Value();
+
+        if (value is double.NaN)
+        {
+            return;
+        }
+
+        Amount += value;
         Display = Amount.ToString(CultureInfo.InvariantCulture);
     }
 }

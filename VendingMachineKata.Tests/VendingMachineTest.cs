@@ -66,4 +66,14 @@ public class VendingMachineTest
 
         machine.Display.Should().Be("0.05");
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Display_Initial_Text_When_Rejected_Coin_Is_Inserted()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Penny);
+
+        machine.Display.Should().Be("INSERT COIN");
+    }
 }
