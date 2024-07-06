@@ -1,4 +1,4 @@
-﻿namespace VendingMachine.Tests;
+﻿namespace VendingMachineKata.Tests;
 
 public class VendingMachineTest
 {

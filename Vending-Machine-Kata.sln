@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Tests", "VendingMachine.Tests\VendingMachine.Tests.csproj", "{A90CE776-DA91-4BA8-9B7F-5BE83F960351}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachineKata.Tests", "VendingMachineKata.Tests\VendingMachineKata.Tests.csproj", "{A90CE776-DA91-4BA8-9B7F-5BE83F960351}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Core", "VendingMachine.Core\VendingMachine.Core.csproj", "{B74F7704-A29A-4FBE-92BE-7BAC5CE9F14B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachineKata.Core", "VendingMachineKata.Core\VendingMachineKata.Core.csproj", "{B74F7704-A29A-4FBE-92BE-7BAC5CE9F14B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
