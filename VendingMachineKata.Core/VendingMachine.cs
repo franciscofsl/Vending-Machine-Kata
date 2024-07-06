@@ -4,10 +4,9 @@ public class VendingMachine
 {
     private VendingMachine()
     {
-        
     }
 
-    public double Amount { get; set; }
+    public double Amount { get; private set; }
 
     public static VendingMachine Initialize()
     {
