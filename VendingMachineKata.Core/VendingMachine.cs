@@ -1,4 +1,6 @@
-﻿namespace VendingMachineKata.Core;
+﻿using System.Globalization;
+
+namespace VendingMachineKata.Core;
 
 public class VendingMachine
 {
@@ -17,5 +19,6 @@ public class VendingMachine
     public void InsertCoin(Coin coin)
     {
         Amount += coin.Value();
+        Display = Amount.ToString(CultureInfo.InvariantCulture);
     }
 }

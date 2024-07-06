@@ -4,12 +4,17 @@ namespace VendingMachineKata.Tests;
 
 public class VendingMachineTest
 {
+    private static Coin Nickel => Coin.Create(2.268, 17.91);
+    private static Coin Dime => Coin.Create(5.0, 21.21);
+    private static Coin Quarter => Coin.Create(5.67, 24.26);
+    private static Coin Penny => Coin.Create(2.5, 19.05);
+
     [Fact]
     public void Vending_Machine_Should_Accept_Nickels()
     {
         var machine = VendingMachine.Initialize();
 
-        machine.InsertCoin(Coin.Create(2.268, 17.91));
+        machine.InsertCoin(Nickel);
 
         machine.Amount.Should().Be(0.05);
     }
@@ -19,7 +24,7 @@ public class VendingMachineTest
     {
         var machine = VendingMachine.Initialize();
 
-        machine.InsertCoin(Coin.Create(5.0, 21.21));
+        machine.InsertCoin(Dime);
 
         machine.Amount.Should().Be(0.10);
     }
@@ -29,7 +34,7 @@ public class VendingMachineTest
     {
         var machine = VendingMachine.Initialize();
 
-        machine.InsertCoin(Coin.Create(5.67, 24.26));
+        machine.InsertCoin(Quarter);
 
         machine.Amount.Should().Be(0.25);
     }
@@ -39,7 +44,7 @@ public class VendingMachineTest
     {
         var machine = VendingMachine.Initialize();
 
-        machine.InsertCoin(Coin.Create(2.5, 19.05));
+        machine.InsertCoin(Penny);
 
         machine.Amount.Should().Be(0);
     }
@@ -50,5 +55,15 @@ public class VendingMachineTest
         var machine = VendingMachine.Initialize();
 
         machine.Display.Should().Be("INSERT COIN");
+    }
+
+    [Fact]
+    public void Vending_Machine_Should_Display_Current_Amount_When_Coin_Is_Inserted()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Nickel);
+
+        machine.Display.Should().Be("0.05");
     }
 }
