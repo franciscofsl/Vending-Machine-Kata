@@ -46,7 +46,7 @@ public class VendingMachineTest
 
         machine.InsertCoin(Penny);
 
-        machine.Amount.Should().Be(0);
+        machine.Amount.Should().Be(MoneyAmount.Zero);
     }
 
     [Fact]

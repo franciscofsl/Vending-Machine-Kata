@@ -16,24 +16,24 @@ public class Coin
         return new Coin(weight, size);
     }
 
-    internal double Value()
+    internal MoneyAmount Value()
     {
         if (IsNickel())
         {
-            return 0.05;
+            return MoneyAmount.Of(0.05);
         }
 
         if (IsDime())
         {
-            return 0.10;
+            return MoneyAmount.Of(0.10);
         }
 
         if (IsQuarter())
         {
-            return 0.25;
+            return MoneyAmount.Of(0.25);
         }
 
-        return double.NaN;
+        return MoneyAmount.Zero;
     }
 
     private bool IsDime()
