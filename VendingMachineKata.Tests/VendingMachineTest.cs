@@ -184,4 +184,16 @@ public class VendingMachineTest
 
         machine.CheckDisplay().Should().Be("PRICE 1");
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Display_INSERT_COIN_After_Check_Display_When_Selected_And_Not_Insert_Enough_Coins()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.SelectProduct(1);
+        machine.InsertCoin(Quarter);
+
+        machine.CheckDisplay().Should().Be("PRICE 1");
+        machine.CheckDisplay().Should().Be("INSERT COIN");
+    }
 }

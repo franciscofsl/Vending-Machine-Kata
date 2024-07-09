@@ -77,6 +77,7 @@ public class VendingMachine
         if (selectedProduct != null)
         {
             _display.Update($"PRICE {(string)selectedProduct.Price}");
+            _display.ShouldResetAfterCheck();
         }
-    } 
+    }
 }
