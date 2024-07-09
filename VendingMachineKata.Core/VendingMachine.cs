@@ -4,11 +4,12 @@ public class VendingMachine
 {
     private readonly ProductsForSale _productsForSale;
     private readonly Dispense _dispense;
+    private readonly Display _display;
 
     private VendingMachine()
     {
-        Display = Display.TurnOn("INSERT COIN");
         Amount = MoneyAmount.Zero;
+        _display = Display.TurnOn("INSERT COIN");
         _productsForSale = ProductsForSale.Create(new Product(1, "Cola", MoneyAmount.Of(1)),
             new Product(2, "Chips", MoneyAmount.Of(0.5)),
             new Product(3, "Candy", MoneyAmount.Of(0.65)));
@@ -16,7 +17,6 @@ public class VendingMachine
     }
 
     public MoneyAmount Amount { get; private set; }
-    public Display Display { get; }
     public List<Coin> Return { get; set; } = new();
 
     public static VendingMachine Initialize()
@@ -35,7 +35,7 @@ public class VendingMachine
         }
 
         Amount += value;
-        Display.Update(Amount);
+        _display.Update(Amount);
         DispenseSelectedProduct();
     }
 
@@ -50,6 +50,11 @@ public class VendingMachine
         return _dispense.Withdraw();
     }
 
+    public string? CheckDisplay()
+    {
+        return _display.Check();
+    }
+
     private void DispenseSelectedProduct()
     {
         if (!EnoughMoneyForSelectedProduct())
@@ -59,7 +64,7 @@ public class VendingMachine
 
         _dispense.Add(_productsForSale.SelectedProduct()!);
         _productsForSale.RemoveSelectedProduct();
-        Display.Update("THANK YOU");
+        _display.Update("THANK YOU");
     }
 
     private bool EnoughMoneyForSelectedProduct()

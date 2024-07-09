@@ -23,9 +23,11 @@ public class Display
             _ => false
         };
     }
-    
+
     internal void Update(string value)
     {
         _value = value;
     }
+
+    internal string? Check() => _value;
 }

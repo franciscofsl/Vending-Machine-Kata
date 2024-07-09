@@ -54,7 +54,7 @@ public class VendingMachineTest
     {
         var machine = VendingMachine.Initialize();
 
-        machine.Display.Should().Be("INSERT COIN");
+        machine.CheckDisplay().Should().Be("INSERT COIN");
     }
 
     [Fact]
@@ -64,7 +64,7 @@ public class VendingMachineTest
 
         machine.InsertCoin(Nickel);
 
-        machine.Display.Should().Be("0.05");
+        machine.CheckDisplay().Should().Be("0.05");
     }
 
     [Fact]
@@ -74,7 +74,7 @@ public class VendingMachineTest
 
         machine.InsertCoin(Penny);
 
-        machine.Display.Should().Be("INSERT COIN");
+        machine.CheckDisplay().Should().Be("INSERT COIN");
     }
 
     [Fact]
@@ -86,7 +86,7 @@ public class VendingMachineTest
         machine.InsertCoin(Penny);
         machine.InsertCoin(Dime);
 
-        machine.Display.Should().Be("0.15");
+        machine.CheckDisplay().Should().Be("0.15");
     }
 
     [Fact]
@@ -142,6 +142,6 @@ public class VendingMachineTest
         machine.InsertCoin(Quarter);
         machine.SelectProduct(1);
 
-        machine.Display.Should().Be("THANK YOU");
+        machine.CheckDisplay().Should().Be("THANK YOU");
     }
 }
