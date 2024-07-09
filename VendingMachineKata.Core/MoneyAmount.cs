@@ -33,6 +33,16 @@ public readonly struct MoneyAmount
         return new MoneyAmount(a._value + b._value);
     }
 
+    public static bool operator <=(MoneyAmount a, MoneyAmount b)
+    {
+        return a._value <= b._value;
+    }
+
+    public static bool operator >=(MoneyAmount a, MoneyAmount b)
+    {
+        return a._value >= b._value;
+    }
+
     public override bool Equals(object? obj)
     {
         return obj switch
