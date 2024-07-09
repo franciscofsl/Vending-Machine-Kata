@@ -3,6 +3,7 @@
 public class VendingMachine
 {
     private readonly Products _products;
+    private readonly Dispense _dispense;
 
     private VendingMachine()
     {
@@ -11,6 +12,7 @@ public class VendingMachine
         _products = Products.Create(new Product(1, "Cola", MoneyAmount.Of(1)),
             new Product(2, "Chips", MoneyAmount.Of(0.5)),
             new Product(3, "Candy", MoneyAmount.Of(0.65)));
+        _dispense = Dispense.Empty();
     }
 
     public MoneyAmount Amount { get; private set; }
