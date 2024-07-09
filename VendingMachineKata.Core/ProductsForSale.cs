@@ -1,18 +1,18 @@
 ﻿namespace VendingMachineKata.Core;
 
-public sealed class Products
+public sealed class ProductsForSale
 {
     private readonly Product[] _products;
     private Product? _selectedProduct;
 
-    private Products(Product[] products)
+    private ProductsForSale(Product[] products)
     {
         _products = products;
     }
 
-    internal static Products Create(params Product[] products)
+    internal static ProductsForSale Create(params Product[] products)
     {
-        return new Products(products);
+        return new ProductsForSale(products);
     }
 
     internal void Select(int position)
@@ -24,4 +24,10 @@ public sealed class Products
     {
         return _selectedProduct is not null && _selectedProduct.Price <= amount;
     }
+
+    internal Product? SelectedProduct()
+    {
+        return _selectedProduct;
+    }
+
 }

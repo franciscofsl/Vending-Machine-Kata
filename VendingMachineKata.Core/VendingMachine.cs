@@ -2,14 +2,14 @@
 
 public class VendingMachine
 {
-    private readonly Products _products;
+    private readonly ProductsForSale _productsForSale;
     private readonly Dispense _dispense;
 
     private VendingMachine()
     {
         Display = Display.TurnOn("INSERT COIN");
         Amount = MoneyAmount.Zero;
-        _products = Products.Create(new Product(1, "Cola", MoneyAmount.Of(1)),
+        _productsForSale = ProductsForSale.Create(new Product(1, "Cola", MoneyAmount.Of(1)),
             new Product(2, "Chips", MoneyAmount.Of(0.5)),
             new Product(3, "Candy", MoneyAmount.Of(0.65)));
         _dispense = Dispense.Empty();
@@ -41,7 +41,7 @@ public class VendingMachine
 
     public void SelectProduct(int position)
     {
-        _products.Select(position);
+        _productsForSale.Select(position);
     }
 
     public IReadOnlyList<Product> WithdrawDispense()
@@ -54,7 +54,7 @@ public class VendingMachine
 
     private void DispenseSelectedProduct()
     {
-        if (_products.EnoughMoneyForSelectedProduct(Amount))
+        if (_productsForSale.EnoughMoneyForSelectedProduct(Amount))
         {
         }
     }
