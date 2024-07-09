@@ -19,4 +19,9 @@ public sealed class Products
     {
         _selectedProduct = _products.FirstOrDefault(_ => _.Position == position);
     }
+
+    internal bool EnoughMoneyForSelectedProduct(MoneyAmount amount)
+    {
+        return _selectedProduct is not null && _selectedProduct.Price <= amount;
+    }
 }

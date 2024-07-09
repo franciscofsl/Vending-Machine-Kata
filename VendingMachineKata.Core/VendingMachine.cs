@@ -36,8 +36,15 @@ public class VendingMachine
 
         Amount += value;
         Display.Update(Amount);
+        DispenseSelectedProduct();
     }
 
+    private void DispenseSelectedProduct()
+    {
+        if (_products.EnoughMoneyForSelectedProduct(Amount))
+        {
+        }
+    }
 
     public void SelectProduct(int position)
     {
