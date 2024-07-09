@@ -159,4 +159,18 @@ public class VendingMachineTest
         machine.CheckDisplay();
         machine.CheckDisplay().Should().Be("INSERT COIN");
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Reset_Amount_To_0_After_Check_When_Dispense_Product()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.SelectProduct(1);
+
+        machine.Amount.Should().Be(MoneyAmount.Zero);
+    }
 }
