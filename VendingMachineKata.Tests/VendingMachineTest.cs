@@ -96,6 +96,22 @@ public class VendingMachineTest
 
         machine.InsertCoin(Penny);
 
-        machine.Return.Should().Contain(Penny); 
+        machine.Return.Should().Contain(Penny);
+    }
+
+    [Fact]
+    public void Vending_Machine_Should_Dispense_Product_When_Enough_Money_Introduced()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.SelectProduct(1);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+
+        var products = machine.WithdrawDispense();
+
+        products.Should().Contain(_ => _.Position == 1);
     }
 }
