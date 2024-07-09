@@ -6,12 +6,12 @@ public class DispensedProducts : IEnumerable<Product>
 {
     private readonly List<Product> _products;
 
-    private DispensedProducts()
+    private DispensedProducts(IEnumerable<Product> products)
     {
-        _products = new List<Product>();
+        _products = products.ToList();
     }
 
-    public static DispensedProducts Empty => new();
+    public static DispensedProducts Empty => new([]);
 
     public IEnumerator<Product> GetEnumerator()
     {
@@ -31,5 +31,10 @@ public class DispensedProducts : IEnumerable<Product>
     internal void Clear()
     {
         _products.Clear();
+    }
+
+    internal DispensedProducts Clone()
+    {
+        return new DispensedProducts(_products);
     }
 }

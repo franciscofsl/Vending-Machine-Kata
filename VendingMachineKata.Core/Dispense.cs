@@ -21,7 +21,7 @@ public class Dispense
 
     internal DispensedProducts Withdraw()
     {
-        var products = _dispensedProducts;
+        var products = _dispensedProducts.Clone();
 
         _dispensedProducts.Clear();
 
