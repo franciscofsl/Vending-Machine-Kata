@@ -57,7 +57,7 @@ public class VendingMachine
 
     private void DispenseSelectedProduct()
     {
-        if (!CanDispenseSelectedProduct())
+        if (!_productsForSale.CanSellSelectedProduct(Amount))
         {
             ShowSelectedProductPriceIfSelected();
             return;
@@ -78,11 +78,5 @@ public class VendingMachine
         {
             _display.Update($"PRICE {(string?)selectedProduct?.Price}");
         }
-    }
-
-    private bool CanDispenseSelectedProduct()
-    {
-        var selectedProduct = _productsForSale.SelectedProduct();
-        return selectedProduct is not null && selectedProduct.Price <= Amount;
-    }
+    } 
 }
