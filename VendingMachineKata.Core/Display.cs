@@ -2,10 +2,13 @@
 
 public class Display
 {
+    private readonly string _defaultValue;
+    private bool _resetAfterCheck;
     private string? _value;
 
     private Display(string defaultValue)
     {
+        _defaultValue = defaultValue;
         _value = defaultValue;
     }
 
@@ -29,5 +32,26 @@ public class Display
         _value = value;
     }
 
-    internal string? Check() => _value;
+    internal string? Check()
+    {
+        if (!_resetAfterCheck)
+        {
+            return _value;
+        }
+
+        var previousValue = _value;
+        ResetToDefaultValue();
+        return previousValue;
+    }
+
+    internal void ShouldResetAfterCheck()
+    {
+        _resetAfterCheck = true;
+    }
+
+    private void ResetToDefaultValue()
+    {
+        _value = _defaultValue;
+        _resetAfterCheck = false;
+    }
 }

@@ -144,4 +144,19 @@ public class VendingMachineTest
 
         machine.CheckDisplay().Should().Be("THANK YOU");
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Display_INSERT_COIN_After_Check_When_Dispense_Product()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.SelectProduct(1);
+
+        machine.CheckDisplay();
+        machine.CheckDisplay().Should().Be("INSERT COIN");
+    }
 }

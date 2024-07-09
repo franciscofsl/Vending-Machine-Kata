@@ -65,6 +65,7 @@ public class VendingMachine
         _dispense.Add(_productsForSale.SelectedProduct()!);
         _productsForSale.RemoveSelectedProduct();
         _display.Update("THANK YOU");
+        _display.ShouldResetAfterCheck();
     }
 
     private bool EnoughMoneyForSelectedProduct()
