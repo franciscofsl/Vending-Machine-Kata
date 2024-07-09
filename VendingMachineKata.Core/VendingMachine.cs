@@ -41,6 +41,7 @@ public class VendingMachine
 
     public void SelectProduct(int position)
     {
+        _products.Select(position);
     }
 
     public IReadOnlyList<Product> WithdrawDispense()
