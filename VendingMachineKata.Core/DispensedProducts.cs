@@ -1,6 +1,8 @@
-﻿namespace VendingMachineKata.Core;
+﻿using System.Collections;
 
-public class DispensedProducts
+namespace VendingMachineKata.Core;
+
+public class DispensedProducts : IEnumerable<Product>
 {
     private readonly List<Product> _products;
 
@@ -11,8 +13,23 @@ public class DispensedProducts
 
     public static DispensedProducts Empty => new();
 
+    public IEnumerator<Product> GetEnumerator()
+    {
+        return _products.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
     internal void Add(Product selectedProduct)
     {
         _products.Add(selectedProduct);
+    }
+
+    internal void Clear()
+    {
+        _products.Clear();
     }
 }

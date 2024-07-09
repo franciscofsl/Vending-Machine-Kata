@@ -18,4 +18,13 @@ public class Dispense
     {
         _dispensedProducts.Add(selectedProduct);
     }
+
+    internal DispensedProducts Withdraw()
+    {
+        var products = _dispensedProducts;
+
+        _dispensedProducts.Clear();
+
+        return products;
+    }
 }

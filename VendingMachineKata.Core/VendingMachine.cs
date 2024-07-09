@@ -44,12 +44,9 @@ public class VendingMachine
         _productsForSale.Select(position);
     }
 
-    public IReadOnlyList<Product> WithdrawDispense()
+    public DispensedProducts WithdrawDispense()
     {
-        return new Product[]
-        {
-            new Product(1, "Cola", MoneyAmount.Of(1))
-        };
+        return _dispense.Withdraw();
     }
 
     private void DispenseSelectedProduct()
