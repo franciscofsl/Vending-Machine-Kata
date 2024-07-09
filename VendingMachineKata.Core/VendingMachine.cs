@@ -57,19 +57,30 @@ public class VendingMachine
 
     private void DispenseSelectedProduct()
     {
-        if (!EnoughMoneyForSelectedProduct())
+        if (!CanDispenseSelectedProduct())
         {
+            ShowSelectedProductPriceIfSelected();
             return;
         }
 
-        _dispense.Add(_productsForSale.SelectedProduct()!);
+        var selectedProduct = _productsForSale.SelectedProduct();
+        _dispense.Add(selectedProduct!);
         _productsForSale.RemoveSelectedProduct();
         _display.Update("THANK YOU");
         _display.ShouldResetAfterCheck();
         Amount = MoneyAmount.Zero;
     }
 
-    private bool EnoughMoneyForSelectedProduct()
+    private void ShowSelectedProductPriceIfSelected()
+    {
+        var selectedProduct = _productsForSale.SelectedProduct();
+        if (selectedProduct != null)
+        {
+            _display.Update($"PRICE {(string?)selectedProduct?.Price}");
+        }
+    }
+
+    private bool CanDispenseSelectedProduct()
     {
         var selectedProduct = _productsForSale.SelectedProduct();
         return selectedProduct is not null && selectedProduct.Price <= Amount;
