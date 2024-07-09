@@ -30,4 +30,8 @@ public sealed class ProductsForSale
         return _selectedProduct;
     }
 
+    internal void RestoreSelectedProduct()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -56,6 +56,8 @@ public class VendingMachine
     {
         if (_productsForSale.EnoughMoneyForSelectedProduct(Amount))
         {
+            _dispense.Add(_productsForSale.SelectedProduct());
+            _productsForSale.RestoreSelectedProduct();
         }
     }
 }
