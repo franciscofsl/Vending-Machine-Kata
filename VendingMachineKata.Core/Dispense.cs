@@ -2,8 +2,11 @@
 
 public class Dispense
 {
+    private readonly DispensedProducts _dispensedProducts;
+
     private Dispense()
     {
+        _dispensedProducts = DispensedProducts.Empty;
     }
 
     internal static Dispense Empty()
@@ -11,8 +14,8 @@ public class Dispense
         return new Dispense();
     }
 
-    internal void Add(Product? selectedProduct)
+    internal void Add(Product selectedProduct)
     {
-        throw new NotImplementedException();
+        _dispensedProducts.Add(selectedProduct);
     }
 }
