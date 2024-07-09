@@ -2,18 +2,15 @@
 
 public class VendingMachine
 {
-    private readonly List<Product> _products;
+    private readonly Products _products;
 
     private VendingMachine()
     {
         Display = Display.TurnOn("INSERT COIN");
         Amount = MoneyAmount.Zero;
-        _products = new List<Product>
-        {
-            new(1, "Cola", MoneyAmount.Of(1)),
-            new(2, "Chips", MoneyAmount.Of(0.5)),
-            new(3, "Candy", MoneyAmount.Of(0.65))
-        };
+        _products = Products.Create(new Product(1, "Cola", MoneyAmount.Of(1)),
+            new Product(2, "Chips", MoneyAmount.Of(0.5)),
+            new Product(3, "Candy", MoneyAmount.Of(0.65)));
     }
 
     public MoneyAmount Amount { get; private set; }
@@ -46,6 +43,9 @@ public class VendingMachine
 
     public IReadOnlyList<Product> WithdrawDispense()
     {
-        return _products.Where(_ => _.Position == 1).ToList();
+        return new Product[]
+        {
+            new Product(1, "Cola", MoneyAmount.Of(1))
+        };
     }
 }
