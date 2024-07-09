@@ -51,10 +51,18 @@ public class VendingMachine
 
     private void DispenseSelectedProduct()
     {
-        if (_productsForSale.EnoughMoneyForSelectedProduct(Amount))
+        if (!EnoughMoneyForSelectedProduct())
         {
-            _dispense.Add(_productsForSale.SelectedProduct());
-            _productsForSale.RemoveSelectedProduct();
+            return;
         }
+
+        _dispense.Add(_productsForSale.SelectedProduct()!);
+        _productsForSale.RemoveSelectedProduct();
+    }
+
+    private bool EnoughMoneyForSelectedProduct()
+    {
+        var selectedProduct = _productsForSale.SelectedProduct();
+        return selectedProduct is not null && selectedProduct.Price <= Amount;
     }
 }
