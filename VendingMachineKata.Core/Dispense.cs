@@ -10,4 +10,9 @@ public class Dispense
     {
         return new Dispense();
     }
+
+    internal void Add(Product? selectedProduct)
+    {
+        throw new NotImplementedException();
+    }
 }
