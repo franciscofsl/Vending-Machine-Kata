@@ -42,6 +42,7 @@ public class VendingMachine
     public void SelectProduct(int position)
     {
         _productsForSale.Select(position);
+        DispenseSelectedProduct();
     }
 
     public DispensedProducts WithdrawDispense()
