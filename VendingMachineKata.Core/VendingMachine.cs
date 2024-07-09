@@ -76,7 +76,7 @@ public class VendingMachine
         var selectedProduct = _productsForSale.SelectedProduct();
         if (selectedProduct != null)
         {
-            _display.Update($"PRICE {(string?)selectedProduct?.Price}");
+            _display.Update($"PRICE {(string)selectedProduct.Price}");
         }
     } 
 }
