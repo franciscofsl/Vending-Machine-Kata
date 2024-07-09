@@ -100,7 +100,7 @@ public class VendingMachineTest
     }
 
     [Fact]
-    public void Vending_Machine_Should_Dispense_Product_When_Enough_Money_Introduced()
+    public void Vending_Machine_Must_Dispense_Product_When_Enough_Money_Is_Inserted_After_Selecting_Product()
     {
         var machine = VendingMachine.Initialize();
 
