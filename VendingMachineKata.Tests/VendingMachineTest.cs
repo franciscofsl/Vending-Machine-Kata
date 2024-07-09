@@ -114,4 +114,20 @@ public class VendingMachineTest
 
         products.Should().Contain(_ => _.Position == 1);
     }
+
+    [Fact]
+    public void Vending_Machine_Must_Dispense_Product_When_Enough_Money_Is_Inserted_Before_Selecting_Product()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.SelectProduct(1);
+
+        var products = machine.WithdrawDispense();
+
+        products.Should().Contain(_ => _.Position == 1);
+    }
 }
