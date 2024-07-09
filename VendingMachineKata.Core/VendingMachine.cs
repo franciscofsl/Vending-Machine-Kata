@@ -39,13 +39,6 @@ public class VendingMachine
         DispenseSelectedProduct();
     }
 
-    private void DispenseSelectedProduct()
-    {
-        if (_products.EnoughMoneyForSelectedProduct(Amount))
-        {
-        }
-    }
-
     public void SelectProduct(int position)
     {
         _products.Select(position);
@@ -57,5 +50,12 @@ public class VendingMachine
         {
             new Product(1, "Cola", MoneyAmount.Of(1))
         };
+    }
+
+    private void DispenseSelectedProduct()
+    {
+        if (_products.EnoughMoneyForSelectedProduct(Amount))
+        {
+        }
     }
 }
