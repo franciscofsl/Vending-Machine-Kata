@@ -130,4 +130,18 @@ public class VendingMachineTest
 
         products.Should().Contain(_ => _.Position == 1);
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Display_Thank_You_When_Product_Is_Dispensed()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.SelectProduct(1);
+
+        machine.Display.Should().Be("THANK YOU");
+    }
 }
