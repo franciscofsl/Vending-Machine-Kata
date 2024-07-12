@@ -5,6 +5,10 @@ public class Coin
     private readonly double _weight;
     private readonly double _size;
 
+    internal static Coin Quarter => new(5.67, 24.26);
+    internal static Coin Dime => new(5.0, 21.21);
+    internal static Coin Nickel => new(2.268, 17.91);
+
     private Coin(double weight, double size)
     {
         _weight = weight;
@@ -20,17 +24,17 @@ public class Coin
     {
         if (IsNickel())
         {
-            return MoneyAmount.Of(0.05);
+            return MoneyAmount.Of(0.05m);
         }
 
         if (IsDime())
         {
-            return MoneyAmount.Of(0.10);
+            return MoneyAmount.Of(0.10m);
         }
 
         if (IsQuarter())
         {
-            return MoneyAmount.Of(0.25);
+            return MoneyAmount.Of(0.25m);
         }
 
         return MoneyAmount.Zero;

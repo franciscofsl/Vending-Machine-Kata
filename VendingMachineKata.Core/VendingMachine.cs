@@ -11,8 +11,8 @@ public class VendingMachine
         Amount = MoneyAmount.Zero;
         _display = Display.TurnOn("INSERT COIN");
         _productsForSale = ProductsForSale.Create(new Product(1, "Cola", MoneyAmount.Of(1)),
-            new Product(2, "Chips", MoneyAmount.Of(0.5)),
-            new Product(3, "Candy", MoneyAmount.Of(0.65)));
+            new Product(2, "Chips", MoneyAmount.Of(0.5m)),
+            new Product(3, "Candy", MoneyAmount.Of(0.65m)));
         _dispense = Dispense.Empty();
     }
 
@@ -28,7 +28,7 @@ public class VendingMachine
     {
         var value = coin.Value();
 
-        if (value == MoneyAmount.Zero)
+        if (value == 0)
         {
             Return.Add(coin);
             return;
@@ -68,9 +68,16 @@ public class VendingMachine
         _productsForSale.RemoveSelectedProduct();
         _display.Update("THANK YOU");
         _display.ShouldResetAfterCheck();
+
+        var diference = Amount - selectedProduct!.Price;
+        if (diference > MoneyAmount.Zero)
+        {
+            Return = diference.ToCoins();
+        }
+
         Amount = MoneyAmount.Zero;
     }
-
+    
     private void ShowSelectedProductPriceIfSelected()
     {
         var selectedProduct = _productsForSale.SelectedProduct();

@@ -16,7 +16,7 @@ public class VendingMachineTest
 
         machine.InsertCoin(Nickel);
 
-        machine.Amount.Should().Be(0.05);
+        machine.Amount.Should().Be(0.05m);
     }
 
     [Fact]
@@ -26,7 +26,7 @@ public class VendingMachineTest
 
         machine.InsertCoin(Dime);
 
-        machine.Amount.Should().Be(0.10);
+        machine.Amount.Should().Be(0.10m);
     }
 
     [Fact]
@@ -36,7 +36,7 @@ public class VendingMachineTest
 
         machine.InsertCoin(Quarter);
 
-        machine.Amount.Should().Be(0.25);
+        machine.Amount.Should().Be(0.25m);
     }
 
     [Fact]
@@ -186,7 +186,8 @@ public class VendingMachineTest
     }
 
     [Fact]
-    public void Vending_Machine_Should_Display_INSERT_COIN_After_Check_Display_When_Selected_And_Not_Insert_Enough_Coins()
+    public void
+        Vending_Machine_Should_Display_INSERT_COIN_After_Check_Display_When_Selected_And_Not_Insert_Enough_Coins()
     {
         var machine = VendingMachine.Initialize();
 
@@ -195,5 +196,20 @@ public class VendingMachineTest
 
         machine.CheckDisplay().Should().Be("PRICE 1");
         machine.CheckDisplay().Should().Be("INSERT COIN");
+    }
+
+    [Fact]
+    public void Vending_Machine_Should_Deposit_Money_Difference_With_Product_Dispensed_On_The_Return()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+
+        machine.SelectProduct(3);
+
+        machine.Return.Should().HaveCount(3);
     }
 }
