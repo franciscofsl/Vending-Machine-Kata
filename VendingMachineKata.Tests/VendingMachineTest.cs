@@ -214,4 +214,23 @@ public class VendingMachineTest
         machine.Return.Should().ContainSingle(coin => coin.Equals(Coin.Quarter));
         machine.Return.Should().ContainSingle(coin => coin.Equals(Coin.Dime));
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Deposit_Money_Difference_And_Not_Accepted_Coins_On_The_Return()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Penny);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+
+        machine.SelectProduct(3);
+
+        machine.Return.Should().HaveCount(3);
+        machine.Return.Should().ContainSingle(coin => coin.Equals(Coin.Quarter));
+        machine.Return.Should().ContainSingle(coin => coin.Equals(Coin.Dime));
+        machine.Return.Should().ContainSingle(coin => coin.Equals(Penny));
+    }
 }
