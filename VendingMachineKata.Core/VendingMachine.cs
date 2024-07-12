@@ -72,12 +72,12 @@ public class VendingMachine
         var diference = Amount - selectedProduct!.Price;
         if (diference > MoneyAmount.Zero)
         {
-            Return = diference.ToCoins();
+            Return.AddRange(diference.ToCoins());
         }
 
         Amount = MoneyAmount.Zero;
     }
-    
+
     private void ShowSelectedProductPriceIfSelected()
     {
         var selectedProduct = _productsForSale.SelectedProduct();
