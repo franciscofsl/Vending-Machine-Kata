@@ -235,4 +235,22 @@ public class VendingMachineTest
         change.Should().ContainSingle(coin => coin.Equals(Coin.Dime));
         change.Should().ContainSingle(coin => coin.Equals(Penny));
     }
+
+    [Fact]
+    public void Vending_Machine_Should_Return_Change_Without_Dispense_Product_And_Update_Display()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Penny);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+
+        var change = machine.WithdrawChange();
+
+        machine.CheckDisplay().Should().Be("INSERT COIN");
+        machine.Amount.Should().Be(MoneyAmount.Zero);
+        change.Should().HaveCount(5);
+    }
 }

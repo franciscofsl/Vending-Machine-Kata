@@ -2,6 +2,7 @@
 
 public class VendingMachine
 {
+    private const string InsertCoinText = "INSERT COIN";
     private readonly ProductsForSale _productsForSale;
     private readonly Dispense _dispense;
     private readonly Display _display;
@@ -11,7 +12,7 @@ public class VendingMachine
     {
         Amount = MoneyAmount.Zero;
         _change = Change.Empty();
-        _display = Display.TurnOn("INSERT COIN");
+        _display = Display.TurnOn(InsertCoinText);
         _productsForSale = ProductsForSale.Create(new Product(1, "Cola", MoneyAmount.Of(1)),
             new Product(2, "Chips", MoneyAmount.Of(0.5m)),
             new Product(3, "Candy", MoneyAmount.Of(0.65m)));
@@ -53,6 +54,12 @@ public class VendingMachine
 
     public Change WithdrawChange()
     {
+        if (Amount > MoneyAmount.Zero)
+        {
+            _change.Add(Amount);
+            Amount = MoneyAmount.Zero;
+            _display.Update(InsertCoinText);
+        }
         return _change.Withdraw();
     }
 
