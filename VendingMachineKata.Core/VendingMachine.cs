@@ -5,12 +5,12 @@ public class VendingMachine
     private readonly ProductsForSale _productsForSale;
     private readonly Dispense _dispense;
     private readonly Display _display;
-    private readonly Return _return;
+    private readonly Change _change;
 
     private VendingMachine()
     {
         Amount = MoneyAmount.Zero;
-        _return = Return.Empty();
+        _change = Change.Empty();
         _display = Display.TurnOn("INSERT COIN");
         _productsForSale = ProductsForSale.Create(new Product(1, "Cola", MoneyAmount.Of(1)),
             new Product(2, "Chips", MoneyAmount.Of(0.5m)),
@@ -31,7 +31,7 @@ public class VendingMachine
 
         if (value == 0)
         {
-            _return.Add(coin);
+            _change.Add(coin);
             return;
         }
 
@@ -53,7 +53,7 @@ public class VendingMachine
 
     public IReadOnlyList<Coin> WithdrawChange()
     {
-        return _return.Withdraw();
+        return _change.Withdraw();
     }
 
     public string? CheckDisplay()
@@ -95,7 +95,7 @@ public class VendingMachine
         var difference = Amount - selectedProduct!.Price;
         if (difference > MoneyAmount.Zero)
         {
-            _return.Add(difference);
+            _change.Add(difference);
         }
     }
 }

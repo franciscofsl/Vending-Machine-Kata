@@ -1,17 +1,17 @@
 ﻿namespace VendingMachineKata.Core;
 
-public class Return
+public class Change
 {
     private readonly List<Coin> _coins;
 
-    private Return(List<Coin> coins)
+    private Change(List<Coin> coins)
     {
         _coins = coins;
     }
 
-    internal static Return Empty()
+    internal static Change Empty()
     {
-        return new Return([]);
+        return new Change([]);
     }
 
     internal void Add(Coin coin)
