@@ -24,7 +24,7 @@ public class Coin
     {
         return obj switch
         {
-            Coin other => _weight == other._weight && _size == other._size, 
+            Coin other => _weight == other._weight && _size == other._size,
             _ => false
         };
     }
@@ -41,16 +41,11 @@ public class Coin
             return MoneyAmount.Of(0.10m);
         }
 
-        if (IsQuarter())
+        if (Equals(Quarter))
         {
             return MoneyAmount.Of(0.25m);
         }
 
         return MoneyAmount.Zero;
-    }
-  
-    private bool IsQuarter()
-    {
-        return _weight is 5.67 && _size is 24.26;
     }
 }
