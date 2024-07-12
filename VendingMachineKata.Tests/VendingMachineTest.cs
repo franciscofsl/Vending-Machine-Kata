@@ -210,6 +210,8 @@ public class VendingMachineTest
 
         machine.SelectProduct(3);
 
-        machine.Return.Should().HaveCount(3);
+        machine.Return.Should().HaveCount(2);
+        machine.Return.Should().ContainSingle(coin => coin.Equals(Coin.Quarter));
+        machine.Return.Should().ContainSingle(coin => coin.Equals(Coin.Dime));
     }
 }
