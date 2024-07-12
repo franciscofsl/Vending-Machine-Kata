@@ -71,8 +71,8 @@ public class VendingMachine
 
         var selectedProduct = _productsForSale.SelectedProduct();
         _dispense.Add(selectedProduct!);
-        _productsForSale.RemoveSelectedProduct();
         CalculateMoneyChange(selectedProduct);
+        _productsForSale.RemoveSelectedProduct();
         _display.Update("THANK YOU");
         _display.ShouldResetAfterCheck();
         Amount = MoneyAmount.Zero;
