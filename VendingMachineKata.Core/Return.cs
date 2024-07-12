@@ -13,4 +13,19 @@ public class Return
     {
         return new Return([]);
     }
+
+    internal void Add(Coin coin)
+    {
+        _coins.Add(coin);
+    }
+
+    internal void Add(MoneyAmount difference)
+    {
+        _coins.AddRange(difference.ToCoins());
+    }
+
+    internal IReadOnlyList<Coin> Withdraw()
+    {
+        return _coins;
+    }
 }

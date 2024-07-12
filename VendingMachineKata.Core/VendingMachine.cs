@@ -5,10 +5,12 @@ public class VendingMachine
     private readonly ProductsForSale _productsForSale;
     private readonly Dispense _dispense;
     private readonly Display _display;
+    private readonly Return _return;
 
     private VendingMachine()
     {
         Amount = MoneyAmount.Zero;
+        _return = Return.Empty();
         _display = Display.TurnOn("INSERT COIN");
         _productsForSale = ProductsForSale.Create(new Product(1, "Cola", MoneyAmount.Of(1)),
             new Product(2, "Chips", MoneyAmount.Of(0.5m)),
@@ -17,7 +19,6 @@ public class VendingMachine
     }
 
     public MoneyAmount Amount { get; private set; }
-    public List<Coin> Return { get; set; } = new();
 
     public static VendingMachine Initialize()
     {
@@ -30,7 +31,7 @@ public class VendingMachine
 
         if (value == 0)
         {
-            Return.Add(coin);
+            _return.Add(coin);
             return;
         }
 
@@ -50,6 +51,11 @@ public class VendingMachine
         return _dispense.Withdraw();
     }
 
+    public IReadOnlyList<Coin> WithdrawChange()
+    {
+        return _return.Withdraw();
+    }
+
     public string? CheckDisplay()
     {
         return _display.Check();
@@ -66,25 +72,30 @@ public class VendingMachine
         var selectedProduct = _productsForSale.SelectedProduct();
         _dispense.Add(selectedProduct!);
         _productsForSale.RemoveSelectedProduct();
+        CalculateMoneyChange(selectedProduct);
         _display.Update("THANK YOU");
         _display.ShouldResetAfterCheck();
-
-        var diference = Amount - selectedProduct!.Price;
-        if (diference > MoneyAmount.Zero)
-        {
-            Return.AddRange(diference.ToCoins());
-        }
-
         Amount = MoneyAmount.Zero;
     }
 
     private void ShowSelectedProductPriceIfSelected()
     {
         var selectedProduct = _productsForSale.SelectedProduct();
-        if (selectedProduct != null)
+        if (selectedProduct == null)
         {
-            _display.Update($"PRICE {(string)selectedProduct.Price}");
-            _display.ShouldResetAfterCheck();
+            return;
+        }
+
+        _display.Update($"PRICE {(string)selectedProduct.Price}");
+        _display.ShouldResetAfterCheck();
+    }
+
+    private void CalculateMoneyChange(Product? selectedProduct)
+    {
+        var difference = Amount - selectedProduct!.Price;
+        if (difference > MoneyAmount.Zero)
+        {
+            _return.Add(difference);
         }
     }
 }
