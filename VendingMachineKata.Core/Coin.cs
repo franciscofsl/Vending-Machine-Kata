@@ -5,9 +5,9 @@ public class Coin
     private readonly double _weight;
     private readonly double _size;
 
-    internal static Coin Quarter => new(5.67, 24.26);
-    internal static Coin Dime => new(5.0, 21.21);
-    internal static Coin Nickel => new(2.268, 17.91);
+    public static Coin Quarter => new(5.67, 24.26);
+    public static Coin Dime => new(5.0, 21.21);
+    public static Coin Nickel => new(2.268, 17.91);
 
     private Coin(double weight, double size)
     {
