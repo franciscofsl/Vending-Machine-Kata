@@ -1,6 +1,8 @@
-﻿namespace VendingMachineKata.Core;
+﻿using System.Collections;
 
-public class Change
+namespace VendingMachineKata.Core;
+
+public class Change : IEnumerable<Coin>
 {
     private readonly List<Coin> _coins;
 
@@ -24,8 +26,17 @@ public class Change
         _coins.AddRange(difference.ToCoins());
     }
 
-    internal IReadOnlyList<Coin> Withdraw()
+    internal Change Withdraw()
     {
-        return _coins;
+        var change = new Change(_coins.ToList());
+        _coins.Clear();
+        return change;
+    }
+
+    public IEnumerator<Coin> GetEnumerator() => _coins.GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }

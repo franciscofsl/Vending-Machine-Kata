@@ -51,7 +51,7 @@ public class VendingMachine
         return _dispense.Withdraw();
     }
 
-    public IReadOnlyList<Coin> WithdrawChange()
+    public Change WithdrawChange()
     {
         return _change.Withdraw();
     }

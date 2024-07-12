@@ -210,9 +210,10 @@ public class VendingMachineTest
 
         machine.SelectProduct(3);
 
-        machine.WithdrawChange().Should().HaveCount(2);
-        machine.WithdrawChange().Should().ContainSingle(coin => coin.Equals(Coin.Quarter));
-        machine.WithdrawChange().Should().ContainSingle(coin => coin.Equals(Coin.Dime));
+        var change = machine.WithdrawChange();
+        change.Should().HaveCount(2);
+        change.Should().ContainSingle(coin => coin.Equals(Coin.Quarter));
+        change.Should().ContainSingle(coin => coin.Equals(Coin.Dime));
     }
 
     [Fact]
@@ -228,9 +229,10 @@ public class VendingMachineTest
 
         machine.SelectProduct(3);
 
-        machine.WithdrawChange().Should().HaveCount(3);
-        machine.WithdrawChange().Should().ContainSingle(coin => coin.Equals(Coin.Quarter));
-        machine.WithdrawChange().Should().ContainSingle(coin => coin.Equals(Coin.Dime));
-        machine.WithdrawChange().Should().ContainSingle(coin => coin.Equals(Penny));
+        var change = machine.WithdrawChange();
+        change.Should().HaveCount(3);
+        change.Should().ContainSingle(coin => coin.Equals(Coin.Quarter));
+        change.Should().ContainSingle(coin => coin.Equals(Coin.Dime));
+        change.Should().ContainSingle(coin => coin.Equals(Penny));
     }
 }
