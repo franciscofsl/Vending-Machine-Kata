@@ -20,9 +20,18 @@ public class Coin
         return new Coin(weight, size);
     }
 
+    public override bool Equals(object? obj)
+    {
+        return obj switch
+        {
+            Coin other => _weight == other._weight && _size == other._size, 
+            _ => false
+        };
+    }
+
     internal MoneyAmount Value()
     {
-        if (IsNickel())
+        if (Equals(Nickel))
         {
             return MoneyAmount.Of(0.05m);
         }
