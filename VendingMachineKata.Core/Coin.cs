@@ -36,7 +36,7 @@ public class Coin
             return MoneyAmount.Of(0.05m);
         }
 
-        if (IsDime())
+        if (Equals(Dime))
         {
             return MoneyAmount.Of(0.10m);
         }
@@ -48,17 +48,7 @@ public class Coin
 
         return MoneyAmount.Zero;
     }
-
-    private bool IsDime()
-    {
-        return _weight is 5.0 && _size is 21.21;
-    }
-
-    private bool IsNickel()
-    {
-        return _weight is 2.268 && _size is 17.91;
-    }
-
+  
     private bool IsQuarter()
     {
         return _weight is 5.67 && _size is 24.26;
