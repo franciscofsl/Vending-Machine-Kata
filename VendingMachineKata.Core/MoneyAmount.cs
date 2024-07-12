@@ -80,23 +80,31 @@ public readonly struct MoneyAmount
 
         while (amount > 0)
         {
-            if (amount >= Coin.Quarter.Value())
+            if (TryAddCoin(ref amount, coins, Coin.Quarter))
             {
-                coins.Add(Coin.Quarter);
-                amount -= Coin.Quarter.Value();
+                continue;
             }
-            else if (amount >= Coin.Nickel.Value())
+
+            if (TryAddCoin(ref amount, coins, Coin.Dime))
             {
-                coins.Add(Coin.Dime);
-                amount -= Coin.Nickel.Value();
+                continue;
             }
-            else if (amount >= Coin.Nickel.Value())
-            {
-                coins.Add(Coin.Nickel);
-                amount -= Coin.Nickel.Value();
-            }
+
+            TryAddCoin(ref amount, coins, Coin.Nickel);
         }
 
         return coins;
+    }
+
+    private static bool TryAddCoin(ref decimal amount, List<Coin> coins, Coin coin)
+    {
+        if (amount < coin.Value())
+        {
+            return false;
+        }
+
+        coins.Add(coin);
+        amount -= coin.Value();
+        return true;
     }
 }
