@@ -268,4 +268,22 @@ public class VendingMachineTest
 
         machine.CheckDisplay().Should().Be("SOLD OUT");
     }
+
+    [Fact]
+    public void
+        Vending_Machine_Should_Display_Money_Amount_If_Selected_Product_Is_Out_Of_Stock_And_Have_Introduced_Coins()
+    {
+        var machine = VendingMachine.Initialize();
+
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.InsertCoin(Quarter);
+        machine.SelectProduct(1);
+        machine.InsertCoin(Quarter);
+        machine.SelectProduct(1);
+
+        machine.CheckDisplay().Should().Be("SOLD OUT");
+        machine.CheckDisplay().Should().Be("INSERT COIN");
+    }
 }
