@@ -13,9 +13,9 @@ public class VendingMachine
         Amount = MoneyAmount.Zero;
         _change = Change.Empty();
         _display = Display.TurnOn(InsertCoinText);
-        _productsForSale = ProductsForSale.Create(new Product(1, "Cola", MoneyAmount.Of(1)),
-            new Product(2, "Chips", MoneyAmount.Of(0.5m)),
-            new Product(3, "Candy", MoneyAmount.Of(0.65m)));
+        _productsForSale = ProductsForSale.Create(new Product(1, "Cola", MoneyAmount.Of(1), 1),
+            new Product(2, "Chips", MoneyAmount.Of(0.5m), 2),
+            new Product(3, "Candy", MoneyAmount.Of(0.65m), 3));
         _dispense = Dispense.Empty();
     }
 
@@ -60,6 +60,7 @@ public class VendingMachine
             Amount = MoneyAmount.Zero;
             _display.Update(InsertCoinText);
         }
+
         return _change.Withdraw();
     }
 
@@ -70,14 +71,14 @@ public class VendingMachine
 
     private void DispenseSelectedProduct()
     {
-        if (!_productsForSale.CanSellSelectedProduct(Amount))
+        var selectedProduct = _productsForSale.SelectedProduct();
+        if (!CanSellProduct(selectedProduct))
         {
-            ShowSelectedProductPriceIfSelected();
             return;
         }
 
-        var selectedProduct = _productsForSale.SelectedProduct();
-        _dispense.Add(selectedProduct!);
+        selectedProduct!.Sell();
+        _dispense.Add(selectedProduct);
         CalculateMoneyChange(selectedProduct);
         _productsForSale.RemoveSelectedProduct();
         _display.Update("THANK YOU");
@@ -85,16 +86,28 @@ public class VendingMachine
         Amount = MoneyAmount.Zero;
     }
 
-    private void ShowSelectedProductPriceIfSelected()
+    private bool CanSellProduct(Product? selectedProduct)
     {
-        var selectedProduct = _productsForSale.SelectedProduct();
-        if (selectedProduct == null)
+        if (selectedProduct is null)
         {
-            return;
+            return false;
         }
 
-        _display.Update($"PRICE {(string)selectedProduct.Price}");
-        _display.ShouldResetAfterCheck();
+        if (selectedProduct.IsSoldOut())
+        {
+            _display.Update("SOLD OUT");
+            _display.ShouldResetAfterCheck();
+            return false;
+        }
+
+        if (!selectedProduct.CanBuy(Amount))
+        {
+            _display.Update($"PRICE {(string)selectedProduct.Price}");
+            _display.ShouldResetAfterCheck();
+            return false;
+        }
+
+        return true;
     }
 
     private void CalculateMoneyChange(Product? selectedProduct)

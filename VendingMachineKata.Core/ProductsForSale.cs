@@ -29,9 +29,4 @@ public sealed class ProductsForSale
     {
         _selectedProduct = null;
     }
-
-    internal bool CanSellSelectedProduct(MoneyAmount amount)
-    {
-        return _selectedProduct is not null && _selectedProduct.Price <= amount;
-    }
 }
